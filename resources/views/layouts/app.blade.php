@@ -16,6 +16,9 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    <!-- Styles -->
+    <link href="{{ asset('css/styles.css') }}" rel="stylesheet" type="text/css" >
 </head>
 
 <body>
@@ -54,12 +57,15 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                <a id="navbarDropdown" class="nav-link" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->username }}
+                                    <div class="d-inline-flex flex-row align-items-center">
+                                        <span class="p-2 text-gray-600">{{Auth::user()->username}}</span>
+                                        <img class="img-profile rounded-circle" src="{{ Auth::user()->avatar() }}" alt="user-avatar" height="36px">                                    
+                                    </div>
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
