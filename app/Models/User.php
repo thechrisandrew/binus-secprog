@@ -10,7 +10,6 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Storage;
 
 use Exception;
-use Auth;
 use App\Traits\HasUuid;
 
 class User extends Authenticatable
@@ -22,7 +21,7 @@ class User extends Authenticatable
     public $incrementing = false;
 
     public function avatar() {
-        $user_id = Auth::user()->id;
+        $user_id = $this->id;
         $active_filesystem = config('filesystems.default');
 
         try {

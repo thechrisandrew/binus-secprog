@@ -60,7 +60,7 @@
                                 <a id="navbarDropdown" class="nav-link" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     <div class="d-inline-flex flex-row align-items-center">
-                                        <span class="p-2 text-gray-600">{{Auth::user()->username}}</span>
+                                        <span class="p-2 text-gray-600">{{ Auth::user()->username }}</span>
                                         <img class="img-profile rounded-circle" src="{{ Auth::user()->avatar() }}" alt="user-avatar" height="36px">                                    
                                     </div>
                                 </a>
