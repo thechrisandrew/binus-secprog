@@ -8,6 +8,10 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
+
+use Auth;
+use Laravolt\Avatar\Facade as Avatar;
 
 class RegisterController extends Controller
 {
@@ -64,10 +68,20 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'username' => $data['username'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        $this->createUserAvatar($data['username'], $user->id);
+
+        return $user;
+        
+    }
+
+    private function createUserAvatar($username, $user_id) {
+        $avatar = Avatar::create($username)->getImageObject()->encode('png');
+        Storage::put('public/avatars/'.$user_id.'.png', (string) $avatar);
     }
 }
