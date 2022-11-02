@@ -19,5 +19,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile');
+Route::post('/profile', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile');
+
 Auth::routes();
 
