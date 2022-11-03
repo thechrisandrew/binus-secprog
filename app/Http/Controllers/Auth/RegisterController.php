@@ -55,6 +55,8 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'username' => ['required', 'string', 'alpha_dash', 'max:30', 'unique:users'],
+            'firstname' => ['required', 'string', 'max:255'],
+            'lastname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -70,6 +72,8 @@ class RegisterController extends Controller
     {
         $user = User::create([
             'username' => $data['username'],
+            'first_name' => $data['firstname'],
+            'last_name' => $data['lastname'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
@@ -77,7 +81,7 @@ class RegisterController extends Controller
         $this->createUserAvatar($data['username'], $user->id);
 
         return $user;
-        
+
     }
 
     private function createUserAvatar($username, $user_id) {
