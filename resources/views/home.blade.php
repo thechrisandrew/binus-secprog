@@ -13,17 +13,13 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-
                         @guest
-                            <h5 class="card-title">{{ __('You are not logged in!') }}</h5>
-                            <p class="card-text text-muted">{{ __('Please login to post something.') }}</p>
+                            {{ __('You are not logged in!') }}
                         @else
-                            <h5 class="card-title">{{ __('You are logged in as:') }} {{ Auth::user()->username }}</h5>
-                            <p class="card-text text-muted">{{ __("What's on your mind?") }}</p>
+                            {{ __('You are logged in!') }}
                         @endguest
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-@endsection
+    @endsection

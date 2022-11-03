@@ -39,7 +39,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link {{ (url()->current() === url('/home')) ? 'active' : '' }}" href="{{ url('/home') }}">Home</a>
+                            <a class="nav-link {{ (url()->current() === url('/')) ? 'active' : '' }}" href="{{ url('/') }}">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ (url()->current() === url('/posts')) ? 'active' : '' }}" href="{{ url('/posts') }}">Posts</a>
