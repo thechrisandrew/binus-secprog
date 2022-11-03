@@ -28,3 +28,6 @@ Route::post('/upload', [App\Http\Controllers\UploadController::class, 'store'])-
 
 Auth::routes();
 
+Route::get('/posts', function(){
+    return view('posts');
+});
