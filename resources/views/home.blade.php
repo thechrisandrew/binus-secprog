@@ -59,15 +59,6 @@
                                 </div>
                             </div>
                         @endforeach
-                        {{-- @foreach ($Posts as $post)
-                        <img src="/storage/avatars/{{ $post->user_id }}.png" alt="" width="48px" height="48px">
-                        {{ $post->user->username }}
-                        <br>
-                        {{ $post->message }}
-                        <br>
-                        {{ $post->created_at }}
-                        <br><br>
-                    @endforeach --}}
                     </div>
                 </div>
             </div>
