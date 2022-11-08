@@ -119,18 +119,18 @@
                     <div class="card-header">{{ __('Change Password') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('home') }}">
+                        <form method="POST" action="{{ route('profile.changepw') }}">
                             @csrf
 
                             <div class="row mb-3">
-                                <label for="password" class="col-form-label">{{ __('Current Password') }}</label>
+                                <label for="current-password" class="col-form-label">{{ __('Current Password') }}</label>
 
                                 <div class="">
-                                    <input id="password" type="password"
-                                        class="form-control @error('password') is-invalid @enderror" name="password"
-                                        required>
+                                    <input id="current-password" type="password"
+                                        class="form-control @error('current_password') is-invalid @enderror"
+                                        name="current_password" required>
 
-                                    @error('password')
+                                    @error('current_password')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -139,12 +139,12 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="current-password" class="col-form-label">{{ __('New Password') }}</label>
+                                <label for="password" class="col-form-label">{{ __('New Password') }}</label>
 
                                 <div class="">
-                                    <input id="current-password" type="password"
-                                        class="form-control @error('current-password') is-invalid @enderror"
-                                        name="current-password" required autocomplete="new-password">
+                                    <input id="password" type="password"
+                                        class="form-control @error('password') is-invalid @enderror" name="password"
+                                        required autocomplete="new-password">
 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
