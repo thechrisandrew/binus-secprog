@@ -48,7 +48,7 @@ class PostController extends Controller
         $post->message = $request->message;
 
         $post->save();
-        return redirect('home');
+        return redirect(route('home'));
     }
 
     /**
