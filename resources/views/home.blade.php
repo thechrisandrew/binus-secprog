@@ -46,7 +46,7 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        @foreach ($Posts as $post)
+                        @foreach ($posts as $post)
                             <div class="card" style="width: 18rem; margin: 1rem">
                                 <div class="card-body">
                                     <img class="rounded-circle" src="{{ $post->user->avatar() }}" alt=""
@@ -54,8 +54,7 @@
                                     <h5 class="card-title">{{ $post->user->username }}</h5>
                                     <h6 class="card-subtitle mb-2 text-muted">{{ $post->created_at }}</h6>
                                     <p class="card-text">{{ $post->message }}</p>
-                                    <a href="#" class="card-link">Card link</a>
-                                    <a href="#" class="card-link">Another link</a>
+                                    <a href="{{ route('post', $post->id) }}" class="card-link">Check Post</a>
                                 </div>
                             </div>
                         @endforeach

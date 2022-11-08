@@ -26,5 +26,5 @@ Route::post('/upload', [App\Http\Controllers\UploadController::class, 'store'])-
 
 Auth::routes();
 
-// Route::get('/post', [PostController::class, 'index'])->name('post');
+Route::get('/post/{id}', [PostController::class, 'show'])->name('post');
 Route::post('/add-post', [PostController::class, 'store'])->name('posting');

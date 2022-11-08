@@ -26,6 +26,6 @@ class HomeController extends Controller
     {
         $posts = Post::orderByDesc('created_at')->paginate(10);
 
-        return view('home', ['Posts' => $posts]);
+        return view('home', ['posts' => $posts]);
     }
 }
