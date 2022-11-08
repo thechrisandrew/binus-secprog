@@ -15,6 +15,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile');
+Route::post('/profile', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile');
+Route::post('/profile/changepw', [App\Http\Controllers\ProfileController::class, 'updatePassword'])->name('profile.changepw');
+Route::post('/profile/changeavatar', [App\Http\Controllers\ProfileController::class, 'updateAvatar'])->name('profile.changeavatar');
+
+Route::post('/upload', [App\Http\Controllers\UploadController::class, 'store'])->name('upload');
+
 Auth::routes();
 
 Route::get('/posts', function(){

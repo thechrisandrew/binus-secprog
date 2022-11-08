@@ -17,8 +17,10 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
-    <!-- Styles -->
-    <link href="{{ asset('css/styles.css') }}" rel="stylesheet" type="text/css" >
+    <!-- External -->
+    <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
+    <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
+    <link href="{{ asset('css/styles.css') }}" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -38,10 +40,12 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link {{ (url()->current() === url('/')) ? 'active' : '' }}" href="{{ url('/') }}">Home</a>
+                            <a class="nav-link {{ url()->current() === url('/') ? 'active' : '' }}"
+                                href="{{ url('/') }}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ (url()->current() === url('/posts')) ? 'active' : '' }}" href="{{ url('/posts') }}">Posts</a>
+                            <a class="nav-link {{ url()->current() === url('/posts') ? 'active' : '' }}"
+                                href="{{ url('/posts') }}">Posts</a>
                         </li>
                     </ul>
 
@@ -66,11 +70,16 @@
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     <div class="d-inline-flex flex-row align-items-center">
                                         <span class="p-2 text-gray-600">{{ Auth::user()->username }}</span>
-                                        <img class="img-profile rounded-circle" src="{{ Auth::user()->avatar() }}" alt="user-avatar" height="36px">
+                                        <img class="img-profile rounded-circle" src="{{ Auth::user()->avatar() }}"
+                                            alt="user-avatar" height="36px">
                                     </div>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('profile') }}">
+                                        {{ __('My Profile') }}
+                                    </a>
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -91,6 +100,10 @@
         <main class="py-4">
             @yield('content')
         </main>
+
+        <script src="https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.js"></script>
+        <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
+        @yield('scripts')
     </div>
 </body>
 
