@@ -3,12 +3,15 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-10">
+            <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header d-flex align-items-center justify-content-between">{{ __('Dashboard') }}
+                    <div class="card-header d-flex align-items-center justify-content-between">
+                        <div>
+                            {{ __('KoboPosts') }}
+                        </div>
                         @guest
                         @else
-                            <button class="btn btn-outline-primary" data-bs-toggle="modal"
+                            <button class="btn btn-outline-secondary" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal">{{ __('Make a post') }}</button>
                         @endguest
                     </div>
@@ -40,25 +43,24 @@
                             </div>
                         </div>
                     </form>
-                    <div class="card-body d-flex justify-content-center justify-content-lg-start flex-wrap">
+                    <div class="card-body">
                         @if (session('status'))
                             <div class="alert alert-success" role="alert">
                                 {{ session('status') }}
                             </div>
                         @endif
-                        @foreach ($posts as $post)
-                            <div class="card" style="width: 18rem; margin: 1rem">
-                                <div class="card-body">
-                                    <img class="rounded-circle" src="{{ $post->user->avatar() }}" alt=""
-                                        width="48px" height="48px">
-                                    <h5 class="card-title">{{ $post->user->username }}</h5>
-                                    <h6 class="card-subtitle mb-2 text-muted">{{ $post->created_at }}</h6>
-                                    <p class="card-text">{{ $post->message }}</p>
-                                    <a href="{{ route('post', $post->id) }}" class="card-link">Check Post</a>
-                                </div>
-                            </div>
-                        @endforeach
+
+                        <img class="rounded-circle" src="{{ $post->user->avatar() }}" alt="" width="48px"
+                            height="48px">
+                        {{ $post->user->username }}
+                        <br>
+                        {{ $post->message }}
+                        <br>
+                        {{ $post->created_at }}
+                        <br><br>
                     </div>
                 </div>
             </div>
-        @endsection
+        </div>
+    </div>
+@endsection
