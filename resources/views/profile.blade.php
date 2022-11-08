@@ -25,7 +25,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="submit" class="btn btn-primary" id="uploadBtn" disabled>Save changes</button>
                     </div>
                 </form>
             </div>
@@ -48,7 +48,7 @@
                         </div>
                         <div class="col d-flex flex-column justify-content-center text-center text-md-start">
                             <div>
-                                <h4 class="mb-1">John Smith</h4>
+                                <h4 class="mb-1">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h4>
                                 <p class="mb-1">{{ '@' . Auth::user()->username }}</p>
                                 <p class="mb-0">Joined At: {{ Auth::user()->created_at->format('d-M-Y') }}</p>
                             </div>
@@ -184,12 +184,31 @@
         // Get a reference to the file input element
         const inputElement = document.querySelector('input[id="filepond"]');
 
+        // Register the plugin
         FilePond.registerPlugin(FilePondPluginFileValidateSize);
+        FilePond.registerPlugin(FilePondPluginFileValidateType);
+
         // Create a FilePond instance
         const options = {
             maxFileSize: '2048KB',
+            required: true,
+            acceptedFileTypes: ['image/png', 'image/jpeg', 'image/jpg'],
+            onaddfilestart: (file) => {
+                isLoadingCheck();
+            },
+            onprocessfile: (files) => {
+                isLoadingCheck();
+            },
+            oninit: () => {
+                disableBtn();
+            },
+            onremovefile: () => {
+                disableBtn();
+            }
         }
+
         const pond = FilePond.create(inputElement, options);
+
         FilePond.setOptions({
             server: {
                 url: '/upload',
@@ -206,5 +225,18 @@
                 return serverResponse.avatar || "Internal Server Error";
             }
         })
+
+        function isLoadingCheck() {
+            var isLoading = pond.getFiles().filter(x => x.status !== 5).length !== 0;
+            if (isLoading) {
+                document.getElementById('uploadBtn').disabled = true;
+            } else {
+                document.getElementById('uploadBtn').disabled = false;
+            }
+        }
+
+        function disableBtn() {
+            document.getElementById('uploadBtn').disabled = true;
+        }
     </script>
 @endsection

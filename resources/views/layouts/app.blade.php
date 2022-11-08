@@ -17,7 +17,8 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
-    <!-- Styles -->
+    <!-- External -->
+    <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
     <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet" type="text/css">
 </head>
@@ -39,10 +40,12 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link {{ (url()->current() === url('/')) ? 'active' : '' }}" href="{{ url('/') }}">Home</a>
+                            <a class="nav-link {{ url()->current() === url('/') ? 'active' : '' }}"
+                                href="{{ url('/') }}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ (url()->current() === url('/posts')) ? 'active' : '' }}" href="{{ url('/posts') }}">Posts</a>
+                            <a class="nav-link {{ url()->current() === url('/posts') ? 'active' : '' }}"
+                                href="{{ url('/posts') }}">Posts</a>
                         </li>
                     </ul>
 
