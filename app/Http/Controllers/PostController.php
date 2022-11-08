@@ -19,10 +19,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderByDesc('created_at')->paginate(10);
-
-        return view('posts', ['Posts' => $posts]);
-
+        //
     }
 
     /**
@@ -51,7 +48,7 @@ class PostController extends Controller
         $post->message = $request->message;
 
         $post->save();
-        return redirect('posts');
+        return redirect('home');
     }
 
     /**
@@ -63,7 +60,7 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
-        return view('posts', ['Post' => $post]);
+        return view('post', ['Post' => $post]);
     }
 
     /**

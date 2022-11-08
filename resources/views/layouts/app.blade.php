@@ -40,9 +40,6 @@
                         <li class="nav-item">
                             <a class="nav-link {{ (url()->current() === url('/')) ? 'active' : '' }}" href="{{ url('/') }}">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{ (url()->current() === url('/posts')) ? 'active' : '' }}" href="{{ url('/posts') }}">Posts</a>
-                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
