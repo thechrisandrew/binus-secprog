@@ -58,6 +58,16 @@
                         <br>
                         {{ $post->created_at }}
                         <br><br>
+                        <hr>
+                        <form action="/comment" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-floating">
+                                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" name="comment" style="height: 100px"></textarea>
+                                <label for="floatingTextarea2">{{ __('Leave a comment') }}</label>
+                                <br>
+                                <button class="btn btn-primary" type="submit">{{ __('Submit') }}</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
