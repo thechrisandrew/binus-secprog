@@ -77,4 +77,8 @@ class User extends Authenticatable
         'id' => 'string',
         'email_verified_at' => 'datetime',
     ];
+
+    public function comments() {
+        return $this->hasMany(Comment::class)->whereNull('id');
+    }
 }

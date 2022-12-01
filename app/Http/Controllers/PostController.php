@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Comment;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\User;
@@ -17,9 +18,11 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index()
     {
-        //
+        // $comments = Comment::orderByDesc('created_at');
+
+        // return view('post', ['comments' => $comments]);
     }
 
     /**
@@ -55,12 +58,14 @@ class PostController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Post  $post
+     * @param \App\Models\Comment $comments
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         $post = Post::find($id);
-        return view('post', ['post' => $post]);
+        $comments = Comment::all()->sortByDesc('created_at');
+        return view('post', ['post' => $post], ['comments' => $comments]);
     }
 
     /**
