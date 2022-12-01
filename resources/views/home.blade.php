@@ -1,3 +1,4 @@
+@include('utils.string')
 @extends('layouts.app')
 
 @section('content')
@@ -25,7 +26,7 @@
                                         width="48px" height="48px">
                                     <h5 class="card-title">{{ $post->user->username }}</h5>
                                     <h6 class="card-subtitle mb-2 text-muted">{{ $post->created_at }}</h6>
-                                    <p class="card-text">{{ $post->message }}</p>
+                                    <p class="card-text">{{ cutString($post->message) }}</p>
                                     <a href="{{ route('post', $post->id) }}" class="card-link">Check Post</a>
                                 </div>
                             </div>

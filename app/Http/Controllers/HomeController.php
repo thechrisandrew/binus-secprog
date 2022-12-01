@@ -25,7 +25,7 @@ class HomeController extends Controller
     public function index()
     {
         $posts = Post::orderByDesc('created_at')->paginate(9);
-        dd($posts);
+
         return view('home', ['posts' => $posts]);
     }
 }
