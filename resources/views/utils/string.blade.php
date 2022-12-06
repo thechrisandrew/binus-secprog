@@ -1,7 +1,7 @@
 <?php
     function cutString($str) {
-        if(strlen($str) > 50) {
-            return substr($str, 0 , 50) . '...';
+        if(strlen($str) > 200) {
+            return substr($str, 0 , 200) . '...';
         }
         return $str;
     }

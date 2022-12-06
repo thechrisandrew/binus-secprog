@@ -18,6 +18,8 @@ class PostFactory extends Factory
     {
         return [
             //
+            'user_id' => \App\Models\User::all()->random()->id,
+            'message' => fake()->paragraph,
         ];
     }
 }
