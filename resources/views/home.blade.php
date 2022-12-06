@@ -22,10 +22,13 @@
                         @foreach ($posts as $post)
                             <div class="card" style="width: 18rem; margin: 1rem">
                                 <div class="card-body">
-                                    <img class="rounded-circle" src="{{ $post->user->avatar() }}" alt=""
-                                        width="48px" height="48px">
-                                    <h5 class="card-title">{{ $post->user->username }}</h5>
-                                    <h6 class="card-subtitle mb-2 text-muted">{{ $post->created_at }}</h6>
+                                    <div class="d-flex align-items-center">
+                                        <img class="rounded-circle" src="{{ $post->user->avatar() }}" alt=""
+                                            width="48px" height="48px">
+                                        <div class="mx-1"></div>
+                                        <h5 class="card-title">{{ $post->user->username }}</h5>
+                                    </div>
+                                    <h6 class="card-subtitle my-2 text-muted">{{ $post->created_at }}</h6>
                                     <p class="card-text">{{ cutString($post->message) }}</p>
                                     <a href="{{ route('post', $post->id) }}" class="card-link">Check Post</a>
                                 </div>
