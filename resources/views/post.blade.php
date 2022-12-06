@@ -58,7 +58,34 @@
                         <br>
                         {{ $post->created_at }}
                         <br><br>
+                        @guest
+                        @else
+                            <hr>
+                            <form action="/comment" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" name="comment" style="height: 100px"></textarea>
+                                    <label for="floatingTextarea2">{{ __('Leave a comment') }}</label>
+                                    <br>
+                                    <button class="btn btn-primary" type="submit">{{ __('Submit') }}</button>
+                                </div>
+                            </form>
+                        @endguest
                     </div>
+                </div>
+
+                <div class="card mt-4">
+                    @foreach($comments as $comment)
+                    <div class="card-body">
+                        <img class="rounded-circle" src="{{ $comment->user->avatar() }}" alt="" width="48px"
+                            height="48px">
+                        {{ $comment->user->username }}
+                        <br>
+                        {{ $comment->comment }}
+                        <br>
+                        {{ $comment->created_at }}
+                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

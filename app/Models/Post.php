@@ -22,8 +22,12 @@ class Post extends Model
         'like_count'
     ];
 
-    public function user(){
+    public function user() {
         return $this->belongsTo(User::class);
+    }
+
+    public function comments() {
+        return $this->hasMany(Comment::class)->whereNull('id');
     }
 
 }

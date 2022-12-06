@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,5 @@ Auth::routes();
 
 Route::get('/post/{id}', [PostController::class, 'show'])->name('post');
 Route::post('/add-post', [PostController::class, 'store'])->name('posting');
+
+Route::post('/comment', [CommentController::class, 'store'])->name('comment');
