@@ -22,10 +22,13 @@
                         @foreach ($posts as $post)
                             <div class="card" style="width: 18rem; margin: 1rem">
                                 <div class="card-body">
-                                    <img class="rounded-circle" src="{{ $post->user->avatar() }}" alt=""
-                                        width="48px" height="48px">
-                                    <h5 class="card-title">{{ $post->user->username }}</h5>
-                                    <h6 class="card-subtitle mb-2 text-muted">{{ $post->created_at }}</h6>
+                                    <div class="d-flex align-items-center">
+                                        <img class="rounded-circle" src="{{ $post->user->avatar() }}" alt=""
+                                            width="48px" height="48px">
+                                        <div class="mx-1"></div>
+                                        <h5 class="card-title">{{ $post->user->username }}</h5>
+                                    </div>
+                                    <h6 class="card-subtitle my-2 text-muted">{{ $post->created_at }}</h6>
                                     <p class="card-text">{{ cutString($post->message) }}</p>
                                     <a href="{{ route('post', $post->id) }}" class="card-link">Check Post</a>
                                 </div>
@@ -39,19 +42,17 @@
             </div>
         </div>
     </div>
- @endsection
+@endsection
 
 <form method="POST" action="/add-post" enctype="multipart/form-data">
     @csrf
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">{{ __('Create a post') }}
                     </h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="form-floating">
