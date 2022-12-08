@@ -64,7 +64,9 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
-        $comments = Comment::all()->sortByDesc('created_at');
+        // dd($comments);
+        // dd($post->comments);
+        $comments = $post->comments;
         return view('post', ['post' => $post], ['comments' => $comments]);
     }
 
