@@ -28,7 +28,7 @@ Route::post('/upload', [App\Http\Controllers\UploadController::class, 'store'])-
 Auth::routes();
 
 Route::get('/post/{id}', [PostController::class, 'show'])->name('post');
-Route::post('/add-post', [PostController::class, 'store'])->name('posting');
+Route::post('/post', [PostController::class, 'store'])->name('post.add');
 Route::delete('/post/{id}/delete', [PostController::class, 'destroy'])->name('post.delete');
 
 Route::post('/comment', [CommentController::class, 'store'])->name('comment');
