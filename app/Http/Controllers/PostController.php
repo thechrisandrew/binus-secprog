@@ -46,7 +46,7 @@ class PostController extends Controller
         $uid = Auth::id();
 
         $this->validate($request, [
-            'message' => 'required|max:255',
+            'message' => 'required|max:1024',
         ]);
 
         $post = new Post;
