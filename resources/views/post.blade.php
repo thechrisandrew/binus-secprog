@@ -11,8 +11,14 @@
                         </div>
                         @guest
                         @else
-                            <button class="btn btn-outline-secondary" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">{{ __('Make a post') }}</button>
+                            {{-- check if user owned post --}}
+                            @if ($post->user_id == Auth::user()->id)
+                                <form method="POST" action="{{ route('post.delete', ['id' => $post->id]) }}">
+                                    @csrf
+                                    {{ method_field('DELETE') }}
+                                    <button class="btn btn-danger" type="submit">{{ __('Delete') }}</button>
+                                </form>
+                            @endif
                         @endguest
                     </div>
                     <form method="POST" action="/add-post" enctype="multipart/form-data">
@@ -64,7 +70,8 @@
                             <form action="/comment" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" name="comment" style="height: 100px"></textarea>
+                                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" name="comment"
+                                        style="height: 100px"></textarea>
                                     <label for="floatingTextarea2">{{ __('Leave a comment') }}</label>
                                     <br>
                                     <button class="btn btn-primary" type="submit">{{ __('Submit') }}</button>
@@ -75,16 +82,16 @@
                 </div>
 
                 <div class="card mt-4">
-                    @foreach($comments as $comment)
-                    <div class="card-body">
-                        <img class="rounded-circle" src="{{ $comment->user->avatar() }}" alt="" width="48px"
-                            height="48px">
-                        {{ $comment->user->username }}
-                        <br>
-                        {{ $comment->comment }}
-                        <br>
-                        {{ $comment->created_at }}
-                    </div>
+                    @foreach ($comments as $comment)
+                        <div class="card-body">
+                            <img class="rounded-circle" src="{{ $comment->user->avatar() }}" alt="" width="48px"
+                                height="48px">
+                            {{ $comment->user->username }}
+                            <br>
+                            {{ $comment->comment }}
+                            <br>
+                            {{ $comment->created_at }}
+                        </div>
                     @endforeach
                 </div>
             </div>

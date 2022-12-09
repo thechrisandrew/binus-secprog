@@ -45,6 +45,9 @@ class PostController extends Controller
     {
         $uid = Auth::id();
 
+        $this->validate($request, [
+            'message' => 'required|max:255',
+        ]);
 
         $post = new Post;
         $post->user_id = $uid;
@@ -64,8 +67,11 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
-        // dd($comments);
-        // dd($post->comments);
+
+        if ($post->is_deleted) {
+            abort(404);
+        }
+
         $comments = $post->comments;
         return view('post', ['post' => $post], ['comments' => $comments]);
     }
@@ -99,8 +105,17 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        //
+        $post = Post::find($id);
+        $uid = Auth::id();
+
+        var_dump($uid);
+
+        if ($post->user_id === $uid) {
+            $post->update(['is_deleted' => true]);
+        };
+
+        return redirect(route('home'));
     }
 }

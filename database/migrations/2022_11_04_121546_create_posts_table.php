@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('image_link')->nullable();
             $table->integer('like_count')->default(0);
             $table->timestamps();
+            $table->boolean('is_deleted')->default(false);
         });
     }
 

@@ -19,7 +19,8 @@ class Post extends Model
         'user_id',
         'message',
         'image_link',
-        'like_count'
+        'like_count',
+        'is_deleted',
     ];
 
     public function user() {
