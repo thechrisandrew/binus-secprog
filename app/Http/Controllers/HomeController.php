@@ -24,7 +24,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderByDesc('created_at')->paginate(9);
+        // get all post with is_deleted = false
+
+        $posts = Post::where('is_deleted', false)->orderByDesc('created_at')->paginate(9);
 
         return view('home', ['posts' => $posts]);
     }
